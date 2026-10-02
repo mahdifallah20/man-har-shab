@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -23,210 +23,178 @@ body {
 }
 
 body {
+
     min-height: 100vh;
 
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
+    background: #111;
+
+    font-family: Tahoma, Arial, sans-serif;
 
     color: white;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     padding: 20px;
 
-    position: relative;
-
-    background: #24322f;
-
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 
-/* پس زمینه محو از همان عکس */
-.background {
-    position: fixed;
+/* عکس واقعی و اصلی */
 
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-image:
-        linear-gradient(
-            rgba(0,0,0,0.20),
-            rgba(0,0,0,0.30)
-        ),
-        url("music-page-background.jpg");
-
-    background-size: cover;
-    background-position: center;
-
-    filter: blur(20px);
-
-    transform: scale(1.08);
-
-    z-index: 0;
-}
-
-
-/* خود عکس اصلی */
 .photo {
+
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100%;
     height: 100%;
 
-    background-image:
-        linear-gradient(
-            rgba(0,0,0,0.08),
-            rgba(0,0,0,0.15)
-        ),
-        url("music-page-background.jpg");
+    object-fit: contain;
 
-    background-repeat: no-repeat;
-
-    background-position: center;
-
-    background-size: contain;
+    object-position: center;
 
     z-index: 1;
+}
+
+
+/* لایه بسیار ملایم روی عکس */
+
+.overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,0.12);
+
+    z-index: 2;
 
     pointer-events: none;
 }
 
 
-/* پنل موزیک */
+/* پنل موسیقی */
 
 .card {
 
     position: relative;
 
-    z-index: 5;
+    z-index: 10;
 
-    width: min(430px, 94vw);
+    width: min(410px, 92vw);
 
-    padding: 28px 24px 24px;
+    padding: 25px 22px;
 
     text-align: center;
 
     background:
-        rgba(20,20,20,0.40);
+        rgba(15,15,15,0.38);
 
     border:
         1px solid
         rgba(255,255,255,0.30);
 
-    border-radius: 30px;
+    border-radius: 28px;
 
     backdrop-filter:
-        blur(7px);
+        blur(5px);
 
     -webkit-backdrop-filter:
-        blur(7px);
+        blur(5px);
 
     box-shadow:
-        0 25px 70px
+        0 20px 60px
         rgba(0,0,0,0.45);
 }
 
 
-/* صفحه گردان */
+/* دیسک */
 
 .disc {
 
-    width: 145px;
-    height: 145px;
+    width: 135px;
 
-    margin:
-        0 auto 20px;
+    height: 135px;
+
+    margin: 0 auto 18px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            #d5a84f 0 7%,
-            #222 8% 13%,
-            #111 14% 100%
+            #d4a54c 0 8%,
+            #222 9% 14%,
+            #111 15% 100%
         );
 
     border:
-        5px solid
+        4px solid
         rgba(255,255,255,0.25);
 
     box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.60);
+        0 12px 35px
+        rgba(0,0,0,0.65);
 
     animation:
         rotate 9s linear infinite;
 
-    animation-play-state:
-        paused;
+    animation-play-state: paused;
 }
-
 
 .disc.playing {
-
-    animation-play-state:
-        running;
+    animation-play-state: running;
 }
-
 
 @keyframes rotate {
 
     from {
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 
 }
 
 
-/* عنوان */
+/* متن */
 
 .label {
 
-    font-size: 14px;
+    font-size: 13px;
 
-    opacity: 0.80;
+    opacity: .8;
 
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 }
-
 
 h1 {
 
     margin: 0;
 
-    font-size: 31px;
+    font-size: 30px;
 
     text-shadow:
-        0 3px 15px
-        rgba(0,0,0,0.70);
+        0 3px 12px
+        rgba(0,0,0,.8);
 }
-
 
 .artist {
 
-    margin-top: 9px;
+    margin-top: 8px;
 
-    font-size: 18px;
+    font-size: 17px;
 
-    opacity: 0.90;
+    opacity: .9;
 }
 
 
@@ -234,17 +202,18 @@ h1 {
 
 .line {
 
-    width: 65px;
+    width: 60px;
 
     height: 3px;
 
-    margin:
-        18px auto;
+    margin: 17px auto;
+
+    background:
+        white;
 
     border-radius: 10px;
 
-    background:
-        rgba(255,255,255,0.85);
+    opacity: .8;
 }
 
 
@@ -252,7 +221,7 @@ h1 {
 
 .equalizer {
 
-    height: 35px;
+    height: 32px;
 
     display: flex;
 
@@ -262,23 +231,21 @@ h1 {
 
     gap: 5px;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
-
 
 .equalizer span {
 
     width: 4px;
 
-    height: 8px;
-
-    border-radius: 5px;
+    height: 7px;
 
     background: white;
 
+    border-radius: 5px;
+
     animation:
-        equalizer
-        0.65s
+        bars .65s
         ease-in-out
         infinite
         alternate;
@@ -287,13 +254,9 @@ h1 {
         paused;
 }
 
-
 .equalizer.playing span {
-
-    animation-play-state:
-        running;
+    animation-play-state: running;
 }
-
 
 .equalizer span:nth-child(2) {
     animation-delay: .1s;
@@ -315,15 +278,14 @@ h1 {
     animation-delay: .1s;
 }
 
-
-@keyframes equalizer {
+@keyframes bars {
 
     from {
         height: 7px;
     }
 
     to {
-        height: 31px;
+        height: 29px;
     }
 
 }
@@ -339,27 +301,17 @@ audio {
 }
 
 
-/* متن */
+/* توضیح */
 
 .message {
 
-    margin-top: 15px;
-
-    font-size: 13px;
-
-    line-height: 2;
-
-    opacity: 0.78;
-}
-
-
-.footer {
-
-    margin-top: 15px;
+    margin-top: 14px;
 
     font-size: 12px;
 
-    opacity: 0.55;
+    line-height: 2;
+
+    opacity: .8;
 }
 
 
@@ -369,8 +321,7 @@ audio {
 
     body {
 
-        padding:
-            12px;
+        padding: 12px;
 
     }
 
@@ -378,56 +329,40 @@ audio {
 
         width: 94vw;
 
-        padding:
-            22px
-            18px
-            20px;
+        padding: 20px 17px;
 
-        border-radius:
-            25px;
-
-        background:
-            rgba(15,15,15,0.36);
     }
 
     .disc {
 
-        width: 120px;
-        height: 120px;
+        width: 110px;
+
+        height: 110px;
 
     }
 
     h1 {
 
-        font-size: 27px;
-
-    }
-
-    .artist {
-
-        font-size: 16px;
+        font-size: 26px;
 
     }
 
 }
 
 
-/* موبایل عمودی:
-   عکس اصلی تا حد ممکن کامل دیده شود */
+/* صفحه موبایل عمودی */
 
-@media (
-    max-width: 600px
-) and (
-    orientation: portrait
-) {
+@media
+(max-width:600px)
+and (orientation:portrait) {
 
     .photo {
 
-        background-size:
-            contain;
+        width: 100%;
 
-        background-position:
-            center center;
+        height: 100%;
+
+        object-fit: contain;
 
     }
 
@@ -441,20 +376,23 @@ audio {
 <body>
 
 
-<!-- پس زمینه محو -->
+<!--
+    این همان فایل عکس اصلی شماست.
+    هیچ فیلتر، برش یا تغییر نسبت تصویری روی آن اعمال نمی‌شود.
+-->
 
-<div class="background"></div>
+<img
+    class="photo"
+    src="music-page-background.jpg"
+    alt="تصویر پس زمینه">
 
 
-<!-- عکس اصلی -->
-
-<div class="photo"></div>
+<div class="overlay"></div>
 
 
-<!-- پنل آهنگ -->
+<!-- پنل موسیقی -->
 
 <div class="card">
-
 
     <div
         class="disc"
@@ -463,23 +401,17 @@ audio {
 
 
     <div class="label">
-
         🎵 آهنگ
-
     </div>
 
 
     <h1>
-
         من هر شب
-
     </h1>
 
 
     <div class="artist">
-
         میثم ابراهیمی
-
     </div>
 
 
@@ -502,14 +434,11 @@ audio {
 
     <audio
         id="player"
-        controls
-        preload="metadata">
+        controls>
 
         <source
             src="https://dl.rozmusic.com/Music/1404/02/27/Meysam%20Ebrahimi%20-%20Man%20Har%20Shab.mp3"
             type="audio/mpeg">
-
-        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
 
     </audio>
 
@@ -520,14 +449,6 @@ audio {
         دکمه ▶️ را فشار دهید.
 
     </div>
-
-
-    <div class="footer">
-
-        🎶 با عشق برای یک خاطره زیبا
-
-    </div>
-
 
 </div>
 
@@ -546,7 +467,7 @@ const equalizer =
 
 player.addEventListener(
     "play",
-    function() {
+    () => {
 
         disc.classList.add("playing");
 
@@ -558,7 +479,7 @@ player.addEventListener(
 
 player.addEventListener(
     "pause",
-    function() {
+    () => {
 
         disc.classList.remove("playing");
 
@@ -570,7 +491,7 @@ player.addEventListener(
 
 player.addEventListener(
     "ended",
-    function() {
+    () => {
 
         disc.classList.remove("playing");
 
@@ -583,5 +504,4 @@ player.addEventListener(
 
 
 </body>
-
 </html>
