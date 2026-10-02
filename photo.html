@@ -13,9 +13,9 @@
 
 <style>
 
-/* =========================
+/* =====================================
    تنظیمات اصلی
-========================= */
+===================================== */
 
 * {
     box-sizing: border-box;
@@ -28,15 +28,9 @@ body {
     height: 100%;
 }
 
-
 body {
 
-    width: 100%;
-    min-height: 100vh;
-
     background: #111;
-
-    color: white;
 
     font-family:
         Tahoma,
@@ -44,109 +38,114 @@ body {
         sans-serif;
 
     overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 }
 
 
-/* =========================
-   عکس اصلی
-========================= */
+/* =====================================
+   محدوده واقعی عکس
+   نسبت عکس اصلی:
+   853 × 1280
+===================================== */
+
+.photo-wrap {
+
+    position: relative;
+
+    height: min(100vh, 150.06vw);
+
+    aspect-ratio: 853 / 1280;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =====================================
+   خود عکس اصلی
+
+   هیچ تغییر، فیلتر یا تاری ندارد
+===================================== */
 
 .photo {
 
-    position: fixed;
+    position: absolute;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
 
-    /*
-       مهم:
-       عکس اصلاً بریده یا زوم نمی‌شود.
-    */
+    height: 100%;
 
     object-fit: contain;
 
-    object-position: center center;
-
-    /*
-       هیچ فیلتر یا تاری وجود ندارد.
-    */
+    object-position: center;
 
     filter: none;
 
     opacity: 1;
 
-    z-index: 1;
+    display: block;
 }
 
 
-/* =========================
-   لایه روی عکس
-   کاملاً شفاف
-========================= */
+/* =====================================
+   هیچ لایه‌ای روی عکس وجود ندارد
+===================================== */
 
 .overlay {
 
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: transparent;
-
-    pointer-events: none;
-
-    z-index: 2;
+    display: none;
 }
 
 
-/* =========================
-   کادر موزیک
-========================= */
+/* =====================================
+   کادر کوچک موزیک
+
+   داخل خود عکس
+   گوشه بالا سمت چپ
+===================================== */
 
 .card {
 
-    position: fixed;
-
-    /*
-       گوشه بالا سمت چپ
-    */
-
-    top: 25px;
-    left: 25px;
+    position: absolute;
 
     z-index: 10;
 
-    width: 350px;
+    top: 18px;
 
-    max-width: calc(100vw - 50px);
+    left: 18px;
 
-    padding: 22px 20px;
+    width: 285px;
+
+    max-width: calc(100% - 36px);
+
+    padding: 17px 15px;
 
     text-align: center;
 
     /*
-       فقط کمی شفافیت برای زیبایی.
-       هیچ Blur وجود ندارد.
+       کاملاً کمی شفاف
+       بدون Blur
     */
 
     background:
-        rgba(0, 0, 0, 0.12);
+        rgba(0, 0, 0, 0.30);
 
     border:
         1px solid
         rgba(255, 255, 255, 0.55);
 
-    border-radius: 24px;
+    border-radius: 20px;
 
     /*
-       بسیار مهم:
-       تصویر پشت کادر تار نمی‌شود.
+       مهم:
+       هیچ تاری روی چهره یا عکس ایجاد نمی‌شود.
     */
 
     backdrop-filter: none;
@@ -154,22 +153,23 @@ body {
     -webkit-backdrop-filter: none;
 
     box-shadow:
-        0 12px 35px
-        rgba(0, 0, 0, 0.25);
+        0 8px 25px
+        rgba(0, 0, 0, 0.30);
 }
 
 
-/* =========================
-   دیسک موسیقی
-========================= */
+/* =====================================
+   دیسک
+===================================== */
 
 .disc {
 
-    width: 125px;
-    height: 125px;
+    width: 88px;
+
+    height: 88px;
 
     margin:
-        0 auto 16px;
+        0 auto 10px;
 
     border-radius: 50%;
 
@@ -183,21 +183,20 @@ body {
         );
 
     border:
-        4px solid
-        rgba(255,255,255,0.28);
+        3px solid
+        rgba(255,255,255,0.30);
 
     box-shadow:
-        0 8px 25px
+        0 7px 18px
         rgba(0,0,0,0.45);
 
     animation:
-        rotateDisc 9s linear infinite;
+        rotateDisc
+        9s linear infinite;
 
     animation-play-state: paused;
 }
 
-
-/* چرخش دیسک هنگام پخش */
 
 .disc.playing {
 
@@ -218,92 +217,88 @@ body {
 }
 
 
-/* =========================
-   متن بالای عنوان
-========================= */
+/* =====================================
+   متن کوچک
+===================================== */
 
 .label {
 
-    font-size: 13px;
+    font-size: 11px;
 
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 
     color: white;
 
     text-shadow:
-        0 2px 7px
-        rgba(0,0,0,0.8);
+        0 2px 6px
+        rgba(0,0,0,0.9);
 }
 
 
-/* =========================
-   عنوان آهنگ
-========================= */
+/* =====================================
+   نام آهنگ
+===================================== */
 
 h1 {
 
     margin: 0;
 
-    font-size: 28px;
+    font-size: 23px;
 
     font-weight: bold;
 
     color: white;
 
     text-shadow:
-        0 3px 10px
-        rgba(0,0,0,0.9);
+        0 2px 8px
+        rgba(0,0,0,0.95);
 }
 
 
-/* =========================
+/* =====================================
    نام خواننده
-========================= */
+===================================== */
 
 .artist {
 
-    margin-top: 7px;
+    margin-top: 5px;
 
-    font-size: 16px;
+    font-size: 13px;
 
     color: white;
 
     text-shadow:
-        0 2px 8px
+        0 2px 6px
         rgba(0,0,0,0.9);
 }
 
 
-/* =========================
-   خط تزئینی
-========================= */
+/* =====================================
+   خط
+===================================== */
 
 .line {
 
-    width: 60px;
+    width: 45px;
 
-    height: 3px;
+    height: 2px;
 
     margin:
-        15px auto;
+        10px auto;
 
     background: white;
 
     border-radius: 10px;
-
-    box-shadow:
-        0 2px 8px
-        rgba(0,0,0,0.6);
 }
 
 
-/* =========================
+/* =====================================
    اکولایزر
-========================= */
+===================================== */
 
 .equalizer {
 
-    height: 30px;
+    height: 22px;
 
     display: flex;
 
@@ -311,17 +306,17 @@ h1 {
 
     align-items: center;
 
-    gap: 5px;
+    gap: 4px;
 
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 
 .equalizer span {
 
-    width: 4px;
+    width: 3px;
 
-    height: 7px;
+    height: 6px;
 
     background: white;
 
@@ -345,42 +340,42 @@ h1 {
 
 
 .equalizer span:nth-child(2) {
-    animation-delay: 0.1s;
+    animation-delay: .1s;
 }
 
 .equalizer span:nth-child(3) {
-    animation-delay: 0.2s;
+    animation-delay: .2s;
 }
 
 .equalizer span:nth-child(4) {
-    animation-delay: 0.3s;
+    animation-delay: .3s;
 }
 
 .equalizer span:nth-child(5) {
-    animation-delay: 0.2s;
+    animation-delay: .2s;
 }
 
 .equalizer span:nth-child(6) {
-    animation-delay: 0.1s;
+    animation-delay: .1s;
 }
 
 
 @keyframes equalizerBars {
 
     from {
-        height: 7px;
+        height: 6px;
     }
 
     to {
-        height: 28px;
+        height: 20px;
     }
 
 }
 
 
-/* =========================
-   پلیر موسیقی
-========================= */
+/* =====================================
+   پخش کننده
+===================================== */
 
 audio {
 
@@ -388,95 +383,148 @@ audio {
 
     width: 100%;
 
-    height: 48px;
+    height: 42px;
 
     margin: 0 auto;
 }
 
 
-/* =========================
+/* =====================================
    متن پایین
-========================= */
+===================================== */
 
 .message {
 
-    margin-top: 12px;
+    margin-top: 8px;
 
-    font-size: 12px;
+    font-size: 10px;
 
-    line-height: 1.9;
+    line-height: 1.8;
 
     color: white;
 
     text-shadow:
-        0 2px 7px
-        rgba(0,0,0,0.9);
+        0 2px 6px
+        rgba(0,0,0,0.95);
 }
 
 
-/* =========================
-   نمایشگرهای کوچک
-========================= */
+/* =====================================
+   موبایل
+===================================== */
 
 @media (max-width: 600px) {
 
     .card {
 
-        top: 15px;
+        top: 10px;
 
-        left: 15px;
+        left: 10px;
 
-        width: 310px;
+        width: 235px;
 
         max-width:
-            calc(100vw - 30px);
+            calc(100% - 20px);
 
         padding:
-            18px 15px;
+            13px 11px;
 
-        border-radius: 20px;
+        border-radius: 17px;
     }
 
 
     .disc {
 
-        width: 105px;
+        width: 70px;
 
-        height: 105px;
+        height: 70px;
+
+        margin-bottom: 7px;
     }
 
 
     h1 {
 
-        font-size: 24px;
+        font-size: 19px;
     }
 
 
     .artist {
 
-        font-size: 15px;
+        font-size: 11px;
+    }
+
+
+    .label {
+
+        font-size: 9px;
+    }
+
+
+    .line {
+
+        margin: 7px auto;
+
+        width: 35px;
+    }
+
+
+    .equalizer {
+
+        height: 17px;
+
+        margin-bottom: 4px;
+    }
+
+
+    .message {
+
+        font-size: 8px;
+
+        margin-top: 5px;
+    }
+
+
+    audio {
+
+        height: 38px;
     }
 
 }
 
 
-/* =========================
-   موبایل عمودی
-========================= */
+/* =====================================
+   موبایل خیلی کوچک
+===================================== */
 
-@media
-(max-width: 600px)
-and (orientation: portrait) {
+@media (max-width: 380px) {
 
-    .photo {
+    .card {
 
-        width: 100vw;
+        width: 205px;
 
-        height: 100vh;
+        padding:
+            11px 9px;
+    }
 
-        object-fit: contain;
 
-        object-position: center center;
+    .disc {
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+
+    h1 {
+
+        font-size: 17px;
+    }
+
+
+    .artist {
+
+        font-size: 10px;
     }
 
 }
@@ -489,137 +537,133 @@ and (orientation: portrait) {
 <body>
 
 
-<!-- ==================================================
-     عکس اصلی
-     
-     نام فایل باید دقیقاً همین باشد:
-     music-page-background.jpg
-================================================== -->
+<!-- =====================================
+     محدوده خود عکس
+===================================== -->
 
-<img
-    class="photo"
-    src="music-page-background.jpg"
-    alt="تصویر پس زمینه">
+<div class="photo-wrap">
 
 
-<!-- لایه کاملاً شفاف -->
+    <!--
+        این همان عکس اصلی شماست.
+        هیچ تغییری روی آن اعمال نمی‌شود.
+    -->
 
-<div class="overlay"></div>
+    <img
+        class="photo"
+        src="music-page-background.jpg"
+        alt="تصویر">
 
 
-<!-- ==================================================
-     کادر موزیک
-================================================== -->
+    <!-- =================================
+         کادر آهنگ
+         داخل خود عکس
+    ================================== -->
 
-<div class="card">
+    <div class="card">
 
 
-    <!-- دیسک -->
+        <!-- دیسک -->
 
-    <div
-        class="disc"
-        id="disc">
+        <div
+            class="disc"
+            id="disc">
+        </div>
+
+
+        <!-- عنوان کوچک -->
+
+        <div class="label">
+
+            🎵 آهنگ
+
+        </div>
+
+
+        <!-- نام آهنگ -->
+
+        <h1>
+
+            من هر شب
+
+        </h1>
+
+
+        <!-- خواننده -->
+
+        <div class="artist">
+
+            میثم ابراهیمی
+
+        </div>
+
+
+        <!-- خط -->
+
+        <div class="line"></div>
+
+
+        <!-- اکولایزر -->
+
+        <div
+            class="equalizer"
+            id="equalizer">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+
+        <!-- پخش کننده -->
+
+        <audio
+            id="player"
+            controls>
+
+            <source
+                src="https://dl.rozmusic.com/Music/1404/02/27/Meysam%20Ebrahimi%20-%20Man%20Har%20Shab.mp3"
+                type="audio/mpeg">
+
+            مرورگر شما از پخش موسیقی پشتیبانی نمی‌کند.
+
+        </audio>
+
+
+        <!-- توضیح -->
+
+        <div class="message">
+
+            برای شنیدن آهنگ،
+            دکمه ▶️ را فشار دهید.
+
+        </div>
+
+
     </div>
-
-
-    <!-- عنوان کوچک -->
-
-    <div class="label">
-
-        🎵 آهنگ
-
-    </div>
-
-
-    <!-- نام آهنگ -->
-
-    <h1>
-
-        من هر شب
-
-    </h1>
-
-
-    <!-- نام خواننده -->
-
-    <div class="artist">
-
-        میثم ابراهیمی
-
-    </div>
-
-
-    <!-- خط تزئینی -->
-
-    <div class="line"></div>
-
-
-    <!-- اکولایزر -->
-
-    <div
-        class="equalizer"
-        id="equalizer">
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </div>
-
-
-    <!-- ==================================================
-         پخش کننده آهنگ
-    ================================================== -->
-
-    <audio
-        id="player"
-        controls>
-
-        <source
-            src="https://dl.rozmusic.com/Music/1404/02/27/Meysam%20Ebrahimi%20-%20Man%20Har%20Shab.mp3"
-            type="audio/mpeg">
-
-        مرورگر شما از پخش موسیقی پشتیبانی نمی‌کند.
-
-    </audio>
-
-
-    <!-- متن پایین -->
-
-    <div class="message">
-
-        برای شنیدن آهنگ،
-        دکمه ▶️ را فشار دهید.
-
-    </div>
-
 
 </div>
 
 
-<!-- ==================================================
+<!-- =====================================
      کنترل انیمیشن‌ها
-================================================== -->
+===================================== -->
 
 <script>
-
 
 const player =
     document.getElementById("player");
 
-
 const disc =
     document.getElementById("disc");
-
 
 const equalizer =
     document.getElementById("equalizer");
 
-
-/* هنگام شروع آهنگ */
 
 player.addEventListener(
     "play",
@@ -633,8 +677,6 @@ player.addEventListener(
 );
 
 
-/* هنگام توقف آهنگ */
-
 player.addEventListener(
     "pause",
     function() {
@@ -647,8 +689,6 @@ player.addEventListener(
 );
 
 
-/* هنگام پایان آهنگ */
-
 player.addEventListener(
     "ended",
     function() {
@@ -659,7 +699,6 @@ player.addEventListener(
 
     }
 );
-
 
 </script>
 
