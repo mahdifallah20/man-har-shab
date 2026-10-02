@@ -1,85 +1,326 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>من هر شب - میثم ابراهیمی</title>
+<title>من هر شب | میثم ابراهیمی</title>
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #171717, #3b1f2b);
-            font-family: Tahoma, Arial, sans-serif;
-            color: white;
-        }
+<style>
 
-        .card {
-            width: 90%;
-            max-width: 420px;
-            padding: 35px 25px;
-            text-align: center;
-            background: rgba(255,255,255,0.08);
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .music-icon {
-            font-size: 70px;
-            margin-bottom: 15px;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Tahoma, Arial, sans-serif;
+    color: white;
 
-        h1 {
-            margin: 10px 0;
-            font-size: 28px;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        h2 {
-            margin: 0 0 25px;
-            font-size: 18px;
-            font-weight: normal;
-            opacity: 0.8;
-        }
+    background:
+        radial-gradient(circle at 20% 20%, #4b1d45 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #172b4d 0%, transparent 35%),
+        linear-gradient(135deg, #090909, #17121b);
 
-        audio {
-            width: 100%;
-            margin-top: 20px;
-        }
+    overflow-x: hidden;
+}
 
-        .text {
-            margin-top: 25px;
-            font-size: 14px;
-            opacity: 0.7;
-            line-height: 2;
-        }
-    </style>
+.container {
+    width: 100%;
+    max-width: 460px;
+    padding: 25px;
+}
+
+.card {
+    position: relative;
+    padding: 35px 25px;
+    border-radius: 32px;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55);
+
+    text-align: center;
+}
+
+.music-disc {
+    width: 210px;
+    height: 210px;
+
+    margin: 0 auto 30px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            #111 0 8%,
+            #8b2f70 9% 14%,
+            #111 15% 19%,
+            #5e2051 20% 28%,
+            #111 29% 38%,
+            #45163d 39% 48%,
+            #111 49% 100%
+        );
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.65),
+        inset 0 0 20px rgba(255,255,255,0.08);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: rotate 14s linear infinite;
+    animation-play-state: paused;
+}
+
+.music-disc.playing {
+    animation-play-state: running;
+}
+
+.disc-center {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #151515;
+
+    border: 7px solid #8b2f70;
+
+    box-shadow: 0 0 20px rgba(139,47,112,0.7);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.small-title {
+    font-size: 14px;
+    opacity: 0.65;
+    margin-bottom: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.artist {
+    margin-top: 10px;
+    font-size: 18px;
+    opacity: 0.75;
+}
+
+.divider {
+    width: 70px;
+    height: 3px;
+
+    margin: 22px auto;
+
+    border-radius: 10px;
+
+    background: #b84f99;
+}
+
+.equalizer {
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    margin: 20px 0;
+}
+
+.equalizer span {
+    width: 4px;
+    height: 10px;
+
+    border-radius: 5px;
+
+    background: #d46ab4;
+
+    animation: equalize 0.8s ease-in-out infinite alternate;
+    animation-play-state: paused;
+}
+
+.equalizer.playing span {
+    animation-play-state: running;
+}
+
+.equalizer span:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.equalizer span:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.equalizer span:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.equalizer span:nth-child(5) {
+    animation-delay: .4s;
+}
+
+.equalizer span:nth-child(6) {
+    animation-delay: .2s;
+}
+
+.equalizer span:nth-child(7) {
+    animation-delay: .1s;
+}
+
+@keyframes equalize {
+    from {
+        height: 7px;
+    }
+
+    to {
+        height: 32px;
+    }
+}
+
+audio {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.message {
+    margin-top: 25px;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    opacity: 0.55;
+}
+
+.footer {
+    margin-top: 28px;
+
+    font-size: 12px;
+
+    opacity: 0.35;
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="container">
+
     <div class="card">
 
-        <div class="music-icon">🎵</div>
+        <div class="music-disc" id="disc">
+            <div class="disc-center"></div>
+        </div>
 
-        <h1>من هر شب</h1>
+        <div class="small-title">
+            🎵 آهنگ
+        </div>
 
-        <h2>میثم ابراهیمی</h2>
+        <h1>
+            من هر شب
+        </h1>
 
-        <audio controls>
+        <div class="artist">
+            میثم ابراهیمی
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="equalizer" id="equalizer">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <audio id="player" controls>
             <source src="https://dl.rozmusic.com/Music/1404/02/27/Meysam%20Ebrahimi%20-%20Man%20Har%20Shab.mp3" type="audio/mpeg">
-            مرورگر شما از پخش فایل صوتی پشتیبانی نمی‌کند.
         </audio>
 
-        <div class="text">
-            برای پخش آهنگ، دکمه ▶️ را فشار دهید.
+        <div class="message">
+            برای شنیدن آهنگ، دکمه ▶️ را فشار دهید.
+        </div>
+
+        <div class="footer">
+            ساخته شده با <span class="heart">♥</span> برای موسیقی
         </div>
 
     </div>
+
+</div>
+
+<script>
+
+const player = document.getElementById("player");
+const disc = document.getElementById("disc");
+const equalizer = document.getElementById("equalizer");
+
+player.addEventListener("play", function() {
+
+    disc.classList.add("playing");
+    equalizer.classList.add("playing");
+
+});
+
+player.addEventListener("pause", function() {
+
+    disc.classList.remove("playing");
+    equalizer.classList.remove("playing");
+
+});
+
+player.addEventListener("ended", function() {
+
+    disc.classList.remove("playing");
+    equalizer.classList.remove("playing");
+
+});
+
+</script>
 
 </body>
 </html>
